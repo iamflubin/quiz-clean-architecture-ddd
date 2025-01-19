@@ -10,8 +10,7 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.List;
 
 @Component
 @Slf4j
@@ -61,8 +60,8 @@ class OpenAIQuizGenerator implements QuizGenerator {
     }
 
     @Override
-    public Set<Question> generate(Category category, DifficultyLevel difficultyLevel,
-                                  int questionCount) {
+    public List<Question> generate(Category category, DifficultyLevel difficultyLevel,
+                                   int questionCount) {
         var prompt = generatePrompt(questionCount, category, difficultyLevel);
         log.debug("Prompt generated. [prompt={}]", prompt);
 
@@ -101,17 +100,17 @@ class OpenAIQuizGenerator implements QuizGenerator {
                 "\nGenerate the quiz.";
     }
 
-    private Set<Question> parseResponse(QuizAIResponse response) {
+    private List<Question> parseResponse(QuizAIResponse response) {
         return response.questions().stream()
                 .map(q -> Question.create(
                         q.text(),
                         answersFrom(q.answers()),
                         answersFrom(q.correctAnswers())
                 ))
-                .collect(Collectors.toSet());
+                .toList();
     }
 
-    private Set<Answer> answersFrom(Set<String> strings) {
-        return strings.stream().map(Answer::new).collect(Collectors.toSet());
+    private List<Answer> answersFrom(List<String> strings) {
+        return strings.stream().map(Answer::new).toList();
     }
 }

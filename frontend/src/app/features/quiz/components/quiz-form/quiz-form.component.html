@@ -1,0 +1,41 @@
+<ng-container>
+  @if (result$ | async; as result) {
+    <app-results [results]="result" />
+  } @else {
+    @if (questions$ | async; as questions) {
+      <ng-container>
+        @if (currentProgress$ | async; as progress) {
+          <div class="mb-4">
+            <p class="text-sm">
+              {{
+                progress < 100
+                  ? 'Question ' +
+                    currentQuestion +
+                    '/' +
+                    (questionCount$ | async)
+                  : "🏁 Last one! You've got this!"
+              }}
+            </p>
+
+            <progress
+              class="progress progress-primary"
+              [value]="currentProgress$ | async"
+              max="100"></progress>
+          </div>
+        }
+
+        @for (question of questions; track question.id; let i = $index) {
+          @if (currentIndex === i) {
+            <app-question
+              [text]="question.text"
+              [answers]="question.answers"
+              [last]="i === ((questionCount$ | async) ?? 1) - 1"
+              [loading]="(loading$ | async) ?? false"
+              (selectAnswers)="onSelectAnswers(question.id, $event)"
+              (submitAnswers)="onSubmitAnswers(question.id, $event)" />
+          }
+        }
+      </ng-container>
+    }
+  }
+</ng-container>

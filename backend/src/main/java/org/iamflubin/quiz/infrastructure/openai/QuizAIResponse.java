@@ -1,10 +1,10 @@
 package org.iamflubin.quiz.infrastructure.openai;
 
-import java.util.Set;
+import java.util.List;
 
 
-record QuizAIResponse(Set<QuestionAIResponse> questions) {
+record QuizAIResponse(List<QuestionAIResponse> questions) {
 
-    record QuestionAIResponse(String text, Set<String> answers, Set<String> correctAnswers) {
+    record QuestionAIResponse(String text, List<String> answers, List<String> correctAnswers) {
     }
 }

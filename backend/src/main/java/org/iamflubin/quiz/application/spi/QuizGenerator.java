@@ -4,8 +4,8 @@ import org.iamflubin.quiz.domain.Category;
 import org.iamflubin.quiz.domain.DifficultyLevel;
 import org.iamflubin.quiz.domain.Question;
 
-import java.util.Set;
+import java.util.List;
 
 public interface QuizGenerator {
-    Set<Question> generate(Category category, DifficultyLevel difficultyLevel, int questionCount);
+    List<Question> generate(Category category, DifficultyLevel difficultyLevel, int questionCount);
 }

@@ -1,20 +1,28 @@
 import { Component } from '@angular/core';
 import { QuizService } from '../../shared/services/quiz.service';
 import { map, Observable } from 'rxjs';
-import { PlayerAnswer, Question } from '../../shared/models/quiz.model';
+import { PlayerAnswer } from '../../shared/models/quiz.model';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { QuestionComponent } from '../question/question.component';
+import { ResultsComponent } from '../results/results.component';
 
 @Component({
   selector: 'app-quiz',
   standalone: true,
-  imports: [AsyncPipe, QuestionComponent, ReactiveFormsModule],
-  templateUrl: './quiz.component.html',
-  styleUrl: './quiz.component.scss',
+  imports: [
+    AsyncPipe,
+    QuestionComponent,
+    ReactiveFormsModule,
+    ResultsComponent,
+  ],
+  templateUrl: './quiz-form.component.html',
+  styleUrl: './quiz-form.component.scss',
 })
-export class QuizComponent {
-  questions$: Observable<Question[]> = this.quizService.questions$;
+export class QuizFormComponent {
+  questions$ = this.quizService.questions$;
+  loading$ = this.quizService.loading$;
+  result$ = this.quizService.result$;
   currentIndex = 0;
   private _selectedAnswers: PlayerAnswer[] = [];
 
@@ -39,8 +47,12 @@ export class QuizComponent {
     this.currentIndex++;
   }
 
-  onSubmitAnswers(questionId: string, answers: string[]) {
-    this._selectedAnswers.push({ questionId, answers });
+  onSubmitAnswers(questionId: string, selectedAnswers: string[]) {
+    this._selectedAnswers.push({ questionId, answers: selectedAnswers });
+    const answers: string[][] = this._selectedAnswers.map(
+      answer => answer.answers
+    );
+    this.quizService.completeSession(answers).subscribe();
     console.log('Selected answers:', this._selectedAnswers);
   }
 }

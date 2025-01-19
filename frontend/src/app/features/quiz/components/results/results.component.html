@@ -1,0 +1,39 @@
+@if (results) {
+  <ng-container>
+    <div class="text-center">
+      <h1>Quiz Results 🎉</h1>
+      <p class="mt-4 font-bold text-3xl">
+        Your Score: <span class="text-primary">{{ results.score }}/100</span>
+      </p>
+      <p class="mt-4">
+        <span class="font-bold"> {{ encouragementMessage.title }} </span>
+        <br />
+        {{ encouragementMessage.subtitle }}
+      </p>
+    </div>
+    <div class="mt-4">
+      <ul class="flex flex-col gap-2">
+        @for (question of results.questions; track $index) {
+          <li
+            class="p-2 border rounded"
+            [ngClass]="{
+              'bg-red-100 border-red-500': !question.correct,
+              'bg-green-100 border-green-500': question.correct,
+            }">
+            <p class="font-bold mb-2">
+              {{ question.text }}
+            </p>
+            <p class="text-sm">
+              <span class="font-bold">Your Answer:</span>
+              {{ question.answers.join(', ') }}
+            </p>
+            <p class="text-sm">
+              <span class="font-bold">Correct Answer:</span>
+              {{ question.correctAnswers.join(', ') }}
+            </p>
+          </li>
+        }
+      </ul>
+    </div>
+  </ng-container>
+}

@@ -15,22 +15,22 @@ public class Quiz {
 
     private final DifficultyLevel difficultyLevel;
 
-    private final Set<Question> questions;
+    private final List<Question> questions;
 
-    public Quiz(@NonNull Set<Question> questions, @NonNull Category category,
+    public Quiz(@NonNull List<Question> questions, @NonNull Category category,
                 @NonNull DifficultyLevel difficultyLevel, UUID id) {
-        this.questions = new HashSet<>(questions);
+        this.questions = new ArrayList<>(questions);
         this.category = category;
         this.difficultyLevel = difficultyLevel;
         this.id = Objects.isNull(id) ? UUID.randomUUID() : id;
     }
 
-    public static Quiz create(Set<Question> questions, Category category,
+    public static Quiz create(List<Question> questions, Category category,
                               DifficultyLevel difficultyLevel) {
         return new Quiz(questions, category, difficultyLevel, null);
     }
 
-    public Set<Question> getQuestions() {
-        return Collections.unmodifiableSet(questions);
+    public List<Question> getQuestions() {
+        return Collections.unmodifiableList(questions);
     }
 }

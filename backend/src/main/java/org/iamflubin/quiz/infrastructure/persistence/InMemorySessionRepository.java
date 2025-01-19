@@ -5,6 +5,7 @@ import org.iamflubin.quiz.domain.Session;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,5 +17,10 @@ class InMemorySessionRepository implements SessionRepository {
     public Session save(Session session) {
         sessions.put(session.getId(), session);
         return sessions.get(session.getId());
+    }
+
+    @Override
+    public Optional<Session> findById(UUID id) {
+        return Optional.ofNullable(sessions.get(id));
     }
 }

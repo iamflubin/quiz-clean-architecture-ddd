@@ -9,7 +9,7 @@ import org.iamflubin.quiz.domain.Session;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -18,12 +18,12 @@ public class StartSessionUseCase {
     private final QuizGenerator quizGenerator;
 
     @Transactional
-    public Quiz execute(CreateSessionCommand command) {
-        Set<Question> questions = quizGenerator.generate(command.getCategory(),
+    public Session execute(CreateSessionCommand command) {
+        List<Question> questions = quizGenerator.generate(command.getCategory(),
                 command.getDifficultyLevel(), Quiz.QUESTION_COUNT);
 
         Quiz quiz = Quiz.create(questions, command.getCategory(), command.getDifficultyLevel());
 
-        return sessionRepository.save(Session.create(quiz)).getQuiz();
+        return sessionRepository.save(Session.create(quiz));
     }
 }

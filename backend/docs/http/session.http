@@ -7,7 +7,7 @@ Content-Type: application/json
   "category": "SCIENCE"
 }
 
-###
+
 
 ### Valid Request - Hard Difficulty with Sports Category
 POST {{baseUrl}}/sessions
@@ -18,7 +18,7 @@ Content-Type: application/json
   "category": "SPORTS"
 }
 
-###
+
 
 ### Invalid Request - Missing Difficulty Level
 POST {{baseUrl}}/sessions
@@ -28,7 +28,7 @@ Content-Type: application/json
   "category": "LITERATURE"
 }
 
-###
+
 
 ### Invalid Request - Missing Category
 POST {{baseUrl}}/sessions
@@ -38,7 +38,7 @@ Content-Type: application/json
   "difficultyLevel": "MEDIUM"
 }
 
-###
+
 
 ### Invalid Request - Invalid Difficulty Level
 POST {{baseUrl}}/sessions
@@ -49,7 +49,7 @@ Content-Type: application/json
   "category": "SCIENCE"
 }
 
-###
+
 
 ### Invalid Request - Invalid Category
 POST {{baseUrl}}/sessions
@@ -60,7 +60,7 @@ Content-Type: application/json
   "category": "UNKNOWN_CATEGORY"
 }
 
-###
+
 
 ### Valid Request - Medium Difficulty with Pop Culture Category
 POST {{baseUrl}}/sessions
@@ -70,3 +70,51 @@ Content-Type: application/json
   "difficultyLevel": "MEDIUM",
   "category": "POP_CULTURE"
 }
+
+
+
+### Complete Quiz Session with Some Incorrect Answers
+POST http://localhost:8080/api/v1/sessions/0f44e39a-69c6-49ec-91e6-9e0f60abdf05/complete
+Content-Type: application/json
+
+{
+  "selectedAnswers": [
+    [
+      "H2O"
+    ],
+    [
+      "Mars"
+    ],
+    [
+      "Oxygen"
+    ],
+    [
+      "Mitochondria"
+    ],
+    [
+      "Gravity"
+    ],
+    [
+      "Dolphin"
+    ],
+    [
+      "100°C"
+    ],
+    [
+      "Wind"
+    ],
+    [
+      "Cell"
+    ],
+    [
+      "Light"
+    ]
+  ]
+}
+
+
+
+
+
+
+

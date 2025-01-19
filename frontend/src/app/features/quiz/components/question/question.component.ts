@@ -25,6 +25,7 @@ export class QuestionComponent implements OnChanges {
   @Input({ required: true }) text = '';
   @Input({ required: true }) answers: string[] = [];
   @Input() last = false;
+  @Input() loading = false;
   @Output() selectAnswers = new EventEmitter<string[]>();
   @Output() submitAnswers = new EventEmitter<string[]>();
   form: FormGroup;
@@ -36,6 +37,9 @@ export class QuestionComponent implements OnChanges {
   }
 
   get buttonLabel(): string {
+    if (this.loading) {
+      return 'Calculating Score ... ⏳';
+    }
     return this.last ? 'Submit' : 'Next';
   }
 
