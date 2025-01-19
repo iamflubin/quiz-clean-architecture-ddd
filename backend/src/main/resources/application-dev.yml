@@ -15,7 +15,7 @@ spring:
 logging:
   level:
     #root: DEBUG
-    org.iamflubin.quizz: DEBUG
+    org.iamflubin.quiz: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type: TRACE
     #org.hibernate.type.descriptor.sql.BasicBinder: TRACE

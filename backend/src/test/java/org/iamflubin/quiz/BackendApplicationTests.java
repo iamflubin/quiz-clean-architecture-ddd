@@ -1,4 +1,4 @@
-package org.iamflubin.quizz;
+package org.iamflubin.quiz;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

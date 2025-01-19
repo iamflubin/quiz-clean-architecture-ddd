@@ -1,1 +1,1 @@
-# quizz-clean-architecture-ddd
+# quiz-clean-architecture-ddd

@@ -1,0 +1,27 @@
+<div>
+  <p class="font-bold text-xl">{{ text }}</p>
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="mt-4 flex flex-col gap-4">
+    <ng-container formArrayName="checkboxes">
+      @for (answer of answers; track $index) {
+        <div class="form-control">
+          <label class="label cursor-pointer">
+            <input
+              type="checkbox"
+              class="checkbox checkbox-primary"
+              [formControlName]="$index" />
+            <span class="label-text">{{ answer }}</span>
+          </label>
+        </div>
+      }
+    </ng-container>
+    <button
+      class="btn btn-primary btn-block mt-4"
+      type="submit"
+      [disabled]="form.invalid">
+      {{ buttonLabel }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,72 @@
+### Valid Request - Easy Difficulty with Science Category
+POST {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+  "difficultyLevel": "EASY",
+  "category": "SCIENCE"
+}
+
+###
+
+### Valid Request - Hard Difficulty with Sports Category
+POST {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+  "difficultyLevel": "HARD",
+  "category": "SPORTS"
+}
+
+###
+
+### Invalid Request - Missing Difficulty Level
+POST {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+  "category": "LITERATURE"
+}
+
+###
+
+### Invalid Request - Missing Category
+POST {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+  "difficultyLevel": "MEDIUM"
+}
+
+###
+
+### Invalid Request - Invalid Difficulty Level
+POST {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+  "difficultyLevel": "EXTREME",
+  "category": "SCIENCE"
+}
+
+###
+
+### Invalid Request - Invalid Category
+POST {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+  "difficultyLevel": "MEDIUM",
+  "category": "UNKNOWN_CATEGORY"
+}
+
+###
+
+### Valid Request - Medium Difficulty with Pop Culture Category
+POST {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+  "difficultyLevel": "MEDIUM",
+  "category": "POP_CULTURE"
+}

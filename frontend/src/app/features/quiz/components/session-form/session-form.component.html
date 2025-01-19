@@ -1,0 +1,35 @@
+<ng-container>
+  @if (loading$ | async) {
+    <ngx-spinner type="square-jelly-box" color="#f7cb15" size="large">
+      <p class="text-primary text-xl font-bold">
+        Sit tight! We’re preparing an awesome quiz for you… 🎯
+      </p>
+    </ngx-spinner>
+  }
+  <div class="h-screen flex items-center justify-center px-4 md:px-0">
+    <div class="w-full max-w-xl">
+      <h1 class="font-black text-3xl text-center">Create a New Quiz Session</h1>
+      <form
+        [formGroup]="form"
+        class="flex flex-col gap-4 mt-4"
+        (ngSubmit)="onCreateSession()">
+        <app-select
+          label="Select Difficulty Level"
+          [options]="difficultyLevels"
+          name="difficultyLevel" />
+
+        <app-select
+          label="Select Quiz Category"
+          [options]="categories"
+          name="category" />
+
+        <button
+          class="btn btn-primary btn-block mt-4"
+          type="submit"
+          [disabled]="loading$ | async">
+          Start Session
+        </button>
+      </form>
+    </div>
+  </div>
+</ng-container>

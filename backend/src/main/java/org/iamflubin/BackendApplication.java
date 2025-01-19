@@ -1,4 +1,4 @@
-package org.iamflubin.quizz;
+package org.iamflubin;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;

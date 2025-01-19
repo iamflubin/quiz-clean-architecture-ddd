@@ -1,0 +1,10 @@
+<label class="form-control w-full">
+  <div class="label">
+    <span class="label-text">{{ label }}</span>
+  </div>
+  <select class="select select-bordered" [formControlName]="name">
+    @for (option of options; track $index) {
+      <option value="{{ option.value }}">{{ option.label }}</option>
+    }
+  </select>
+</label>

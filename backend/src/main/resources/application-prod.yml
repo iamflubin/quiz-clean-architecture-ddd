@@ -10,7 +10,7 @@ spring:
 logging:
   level:
     root: info
-    org.iamflubin.quizz: INFO
+    org.iamflubin.quiz: INFO
     org.springframework: INFO
     org.hibernate.SQL: OFF
     org.hibernate.type: OFF
