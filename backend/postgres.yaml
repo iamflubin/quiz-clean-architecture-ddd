@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres:14
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: quizz_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - quizz_data:/var/lib/postgresql/data
+    networks:
+      - quizz_network
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - "8081:8080"
+    networks:
+      - quizz_network
+
+volumes:
+  quizz_data:
+
+networks:
+  quizz_network:
