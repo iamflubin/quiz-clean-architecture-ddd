@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/quizz_db
+    url: jdbc:postgresql://localhost:5432/quiz_db
     username: root
     password: root
   jpa:

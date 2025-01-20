@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.iamflubin</groupId>
-    <artifactId>quiz</artifactId>
+    <artifactId>quiz-backend</artifactId>
     <version>0.0.0</version>
-    <name>backend</name>
-    <description>backend</description>
+    <name>Quiz Backend</name>
+    <description>Backend for the Quiz app</description>
     <url/>
     <licenses>
         <license/>

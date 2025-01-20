@@ -1,6 +1,6 @@
 spring:
   application:
-    name: quizz-app-backend
+    name: quiz-app-backend
   profiles:
     active: dev
   jpa:
