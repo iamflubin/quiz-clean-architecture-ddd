@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,19 +24,21 @@ class SessionController {
 
 
     @PostMapping
-    ResponseEntity<CreateSessionResponse> createSession
+    CompletableFuture<ResponseEntity<CreateSessionResponse>> createSession
             (@Valid @RequestBody CreateSessionCommand command) {
-        var session = startSessionUseCase.execute(command);
+        return CompletableFuture.supplyAsync(() -> {
+            var session = startSessionUseCase.execute(command);
 
-        var responses = session.getQuiz().getQuestions().stream()
-                .map(q -> new CreateSessionResponse
-                        .QuestionResponse(q.getId(), q.getText(), q.getAnswers().stream()
-                        .map(Answer::text).toList()))
-                .toList();
+            var responses = session.getQuiz().getQuestions().stream()
+                    .map(q -> new CreateSessionResponse
+                            .QuestionResponse(q.getId(), q.getText(), q.getAnswers().stream()
+                            .map(Answer::text).toList()))
+                    .toList();
 
 
-        return new ResponseEntity<>(new CreateSessionResponse(session.getId(), responses),
-                HttpStatus.CREATED);
+            return new ResponseEntity<>(new CreateSessionResponse(session.getId(), responses),
+                    HttpStatus.CREATED);
+        });
     }
 
     @PostMapping("/{id}/complete")
